@@ -1,9 +1,9 @@
 //input parameters, some are placeholders
-float3 HCpreviewRGB <string UIName = "HCpreviewRGB(PlayerColor)";> = {1, 1, 1};  // Default to white
+float3 HCpreviewRGB <string UIName = "HCpreviewRGB(PlayerColor)"; string UIWidget = "Color";> = {1, 1, 1};  // Default to white
 texture DiffuseTexture <string UIName = "DiffuseTexture";>; 
 texture NormalMap <string UIName = "NormalMap(NRM)";>; 
 texture SpecMap <string UIName = "SpecMap(SPM)";>; 
-float EnvMult <string UIName = "EnvMult(reflection)"; string UIWidget = "Slider"; float UIMax = 1; float UIMin = 0; float UIStep = 0.1;> = { 1 };
+float EnvMult <string UIName = "EnvMult(reflection)"; string UIWidget = "Slider"; float UIMax = 1; float UIMin = 0; float UIStep = 0.1;> = { 1.0 };
 bool AlphaTestEnable <string UIName = "AlphaTestEnable(holes)";>;
 
 //the useful samplers

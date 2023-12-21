@@ -4,7 +4,7 @@ texture DiffuseTexture <string UIName = "DiffuseTexture";>;
 texture NormalMap <string UIName = "NormalMap (NRM)";>; 
 texture SpecMap <string UIName = "SpecMap (SPM)";>; 
 float EnvMult <string UIName = "EnvMult (reflection)"; string UIWidget = "Slider"; float UIMax = 1; float UIMin = 0; float UIStep = 0.1;> = { 1.0 };
-bool AlphaTestEnable <string UIName = "AlphaTestEnable (holes)";>;
+bool AlphaTestEnable <string UIName = "AlphaTestEnable (holes)";> = { 1 }; //maybe i shoud default 0 and see how many people forget to turn it on haha
 
 //the useful samplers
 sampler DiffuseSampler = sampler_state 

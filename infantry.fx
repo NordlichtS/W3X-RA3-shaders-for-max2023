@@ -3,13 +3,13 @@ float3 HCpreviewRGB <string UIName = "HCpreviewRGB ( Player Color )"; string UIW
 texture Texture_0 <string UIName = "Texture_0";>; 
 float3 ColorAmbient <string UIName = "Color Ambient"; string UIWidget = "Color"; string UIWidgetParams = "noalpha";> = {1, 1, 1}; 
 float3 ColorDiffuse <string UIName = "Color Diffuse"; string UIWidget = "Color"; string UIWidgetParams = "noalpha";> = {1, 1, 1}; 
+float3 ColorEmissive <string UIName = "Color Emissive"; string UIWidget = "Color"; string UIWidgetParams = "noalpha";> = {0, 0, 0}; 
 float3 ColorSpecular <string UIName = "Color Specular"; string UIWidget = "Color"; string UIWidgetParams = "noalpha";> = {1, 1, 1}; 
-float3 ColorEmissive <string UIName = "Color Emissive"; string UIWidget = "Color"; string UIWidgetParams = "noalpha";> = {1, 1, 1}; 
 float Shininess <string UIName = "Shininess" ; string UIWidget = "Slider"; float UIMax = 1; float UIMin = 0; float UIStep = 0.1;> = { 1 };
 bool AlphaTestEnable <string UIName = "Alpha Test Enable";> = false ;
 bool DepthWriteEnable <string UIName = "Depth Write Enable";> = true ;
 bool CullingEnable <string UIName = "Culling Enable";> = true ;
-int BlendMode <string UIName = "BlendMode(0=opaque/1=alpha/2=additive)"; int UIMin = 0; int UIMax = 2;> = { 0 } ;
+int BlendMode <string UIName = "Blend Mode (0=opaque/1=alpha/2=additive)"; int UIMin = 0; int UIMax = 2;> = { 0 } ;
 
 
 //the useful samplers

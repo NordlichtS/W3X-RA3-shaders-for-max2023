@@ -1,9 +1,16 @@
-//placeholder parameters
-
-
-//the only texture
+//input parameters, some are placeholders
 texture DiffuseTexture <string UIName = "DiffuseTexture";>; 
-bool AlphaTestEnable <string UIName = "Alpha Test Enable";> = 0 ;
+texture NormalMap <string UIName = "NormalMap(NRM)";>; 
+texture SpecMap <string UIName = "SpecMap(SPM)";>; 
+texture DamagedTexture <string UIName = "Damaged Texture";>; 
+float3 AmbientColor <string UIName = "Ambient Color"; string UIWidget = "Color";> = { 0.4, 0.4, 0.4 };
+float4 DiffuseColor <string UIName = "Diffuse Color (RGBA)"; string UIWidget = "Color";> = { 1, 1, 1, 1 };
+float3 SpecularColor <string UIName = "Specular Color"; string UIWidget = "Color";> = { 0.8, 0.8, 0.8 };
+float SpecularExponent <string UIName = "Specular Exponent"; string UIWidget = "Slider"; float UIMax = 200; float UIMin = 0; float UIStep = 1;> = { 50 };
+float EnvMult <string UIName = "EnvMult(Reflection)"; string UIWidget = "Slider"; float UIMax = 1; float UIMin = 0; float UIStep = 0.1;> = { 1 };
+float BumpScale <string UIName = "Bump Scale (Height? NRM vector XY scale?)"; string UIWidget = "Slider"; float UIMin = 0; float UIMax = 12; float UIStep = 0.1;> = { 1 };
+bool AlphaTestEnable <string UIName = "Alpha Test Enable";> = { 1 };  //actually it should not be chosen, always 1
+
 
 sampler DiffuseSampler = sampler_state 
 {
@@ -51,10 +58,8 @@ struct PS_INPUT
 
 float4 PS_Main(PS_INPUT input) : COLOR
 {
-    // Sample the diffuse texture
     float4 diffuseColor = tex2D(DiffuseSampler, input.TexCoord);
 
-    // Alpha test: Discard pixels with alpha below a threshold
     if (AlphaTestEnable && diffuseColor.a < 0.5) discard;
 
     return diffuseColor;

@@ -1,13 +1,27 @@
-//placeholder parameters
-
-
-//the only texture
+//input parameters, some are placeholders
+float3 HCpreviewRGB <string UIName = "HCpreviewRGB(PlayerColor)";> = {1, 1, 1};  // Default to white
 texture DiffuseTexture <string UIName = "DiffuseTexture";>; 
-bool AlphaTestEnable <string UIName = "Alpha Test Enable";> = 0 ;
+texture NormalMap <string UIName = "NormalMap(NRM)";>; 
+texture SpecMap <string UIName = "SpecMap(SPM)";>; 
+texture DamagedTexture <string UIName = "Damaged Texture";>; 
+float EnvMult <string UIName = "EnvMult(Reflection)"; string UIWidget = "Slider"; float UIMax = 1; float UIMin = 0; float UIStep = 0.1;> = { 1 };
+bool AlphaTestEnable <string UIName = "AlphaTestEnable(holes)";>;
 
+//the useful samplers
 sampler DiffuseSampler = sampler_state 
 {
     Texture = <DiffuseTexture>; 
+    MinFilter = 3;
+    MagFilter = 2;
+    MipFilter = 2;
+    MaxAnisotropy = 8;
+    AddressU = 1;
+    AddressV = 1;
+};
+
+sampler SpecSampler = sampler_state 
+{
+    Texture = <SpecMap>; 
     MinFilter = 3;
     MagFilter = 2;
     MipFilter = 2;
@@ -51,14 +65,20 @@ struct PS_INPUT
 
 float4 PS_Main(PS_INPUT input) : COLOR
 {
-    // Sample the diffuse texture
+    // Sample the texture
     float4 diffuseColor = tex2D(DiffuseSampler, input.TexCoord);
+    float4 SPMcolor = tex2D(SpecSampler, input.TexCoord);
+
+    // Lerp between HCpreviewRGB and DiffuseColor based on hcweight
+    float3 finalColor = lerp( diffuseColor.rgb, HCpreviewRGB.rgb * diffuseColor.rgb , SPMcolor.b);
 
     // Alpha test: Discard pixels with alpha below a threshold
-    if (AlphaTestEnable && diffuseColor.a < 0.5) discard;
+    if (AlphaTestEnable && diffuseColor.a < 0.5)
+        discard;
 
-    return diffuseColor;
+    return float4(finalColor, 1.0);  // or return float4(finalColor, finalColor.a);
 }
+
 
 technique MainTechnique
 {

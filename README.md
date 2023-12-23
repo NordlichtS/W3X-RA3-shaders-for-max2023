@@ -1,9 +1,12 @@
 # W3X-RA3-shaders-for-max2023
 Rewritten RedAlert3 shaders for 3dsmax 2017-2023, so you can assign, preview and export materials when making mods just like those back in 3dsMax9
 
+It appears the updated 2023 w3x exporter on w3dhub has one annoying flaw: cannot use shaders from the game's sdk. No preview and no parameter export can be such a hassle for modders. This repository aim to fix (or should i say bypass) this flaw.
+
 How to use:
 
-Download any of these FX files as you need (don't compile them) put them in any folder, and choose the shader you need in 3dsmax compact material editor.
+Download any of these FX files as you need (do NOT compile them! 3dsmax need to read the source HLSL code to show you its parameter editors) 
+put them in any folder, and choose the shader you need in 3dsmax compact material editor.
 
 Basically the same workflow as those in (outdated) 3dsmax 9
 ![alt text](https://github.com/NordlichtS/W3X-RA3-shaders-for-max2023/blob/main/shader%20param%20objects.png?raw=true)

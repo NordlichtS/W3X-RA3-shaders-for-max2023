@@ -24,3 +24,5 @@ it will record all your shader parameters into the w3x mesh files just like in m
 (find "FXshader" in your W3X mesh file to check on them if you want.)
 
 ![alt text](https://github.com/NordlichtS/W3X-RA3-shaders-for-max2023/blob/main/shader%20param%20infantry.png?)
+
+The max2e3x.dle file is fixed by WU, because the earlier version on w3dhub has a bug (it mistakes boolean and int values as float)

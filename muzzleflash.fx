@@ -2,7 +2,7 @@
 float3 ColorEmissive <string UIName = "Color Emissive"; string UIWidget = "Color";> = { 1, 1, 1 };
 bool MultiTextureEnable <string UIName = "Multi Texture Enable";>;
 texture Texture_0 <string UIName = "Texture_0";>; 
-float TexCoordTransformAngle_0 <string UIName = "Angle_0 (Radian Delta Rate per Frame)"; string UIWidget = "Slider"; float UIMin = -100; float UIMax = 100;> = {2};
+float TexCoordTransformAngle_0 <string UIName = "Angle_0 (Radian Delta Rate per Frame)"; string UIWidget = "Slider"; float UIMin = -100; float UIMax = 100;> = {0.25};
 float TexCoordTransformU_0 <string UIName = "VertexID 0 Rotation Center U"; string UIWidget = "Slider"; float UIMin = 0; float UIMax = 1;> = { 0.5 };
 float TexCoordTransformV_0 <string UIName = "VertexID 0 Rotation Center V"; string UIWidget = "Slider"; float UIMin = 0; float UIMax = 1;> = { 0.5 };
 float TexCoordTransformU_1 <string UIName = "VertexID 1 Rotation Center U"; string UIWidget = "Slider"; float UIMin = 0; float UIMax = 1;> = { 0.5 };
@@ -54,9 +54,10 @@ struct PS_INPUT
 
 float4 PS_Main(PS_INPUT input) : COLOR
 {
+    // Sample the diffuse texture
+    float4 diffuseColor = tex2D(DiffuseSampler, input.TexCoord);
 
-    float4 diffuseColor = tex2D(Texture_0Sampler, input.TexCoord);
-
+    // Alpha blend: Combine the source color with the destination color
     return diffuseColor;
 }
 
